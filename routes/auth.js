@@ -13,7 +13,7 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 
 const routerAuth = Router();
 
-routerAuth.get("/:user", getUSers);
+routerAuth.get("/:user/:password", getUSers);
 
 routerAuth.post("/new", [
   // middlewares

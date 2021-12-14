@@ -1,10 +1,10 @@
 import mysql from "mysql";
-
+/*VSn9nh,nRT)P */
 const connection = mysql.createConnection({
   host: "107.180.26.80",
   user: "darcornetshop",
-  password: "VSn9nh,nRT)P",
-  database: "syspedidos3",
+  password: "darcornetshop",
+  database: "syspedidos4",
 });
 connection.connect((err) => {
   if (err) {

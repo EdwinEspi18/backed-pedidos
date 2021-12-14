@@ -1,14 +1,25 @@
 import { connection } from "../database/config.js";
+import crypto from "crypto";
 
-export const getUSers = (req, res) => {
-  const { user } = req.params;
-  let resu;
-  connection.query("SELECT * from users", async function (error, results) {
-    if (error) throw error;
+export const getUSers = async (req, res) => {
+  const { user, password } = req.params;
+  let resultado;
+  const ur = crypto.createHash("md5").update(password).digest("hex").toString();
+  try {
+    connection.query("SELECT * from users", async function (error, results) {
+      if (error) throw error;
 
-    const resu = await results.find((userS) => userS.username === user);
-    console.log(resu);
-  });
-  connection.end();
-  res.json(resu);
+      resultado = await results.map((userS) =>
+        userS.username === user && userS.password === ur
+          ? userS
+          : { err: "Usuario o contraseña incorrectos" }
+      );
+
+      return res.json(resultado);
+    });
+  } catch (error) {
+    res.json({ err: error });
+  }
+
+  /* connection.end(); */
 };
