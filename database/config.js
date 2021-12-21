@@ -1,5 +1,5 @@
 import mysql from "mysql";
-/*VSn9nh,nRT)P */
+
 const connection = mysql.createConnection({
   host: "107.180.26.80",
   user: "darcornetshop",
@@ -12,6 +12,6 @@ connection.connect((err) => {
     return;
   }
 
-  console.log("connected as id " + connection.threadId);
+  console.log("DB is connected");
 });
 export { connection };

@@ -15,24 +15,4 @@ const routerAuth = Router();
 
 routerAuth.get("/:user/:password", getUSers);
 
-routerAuth.post("/new", [
-  // middlewares
-  check("name", "El nombre es obligatorio").not().isEmpty(),
-  check("email", "El email es obligatorio").isEmail(),
-  check("password", "El password debe de ser de 6 caracteres").isLength({
-    min: 6,
-  }),
-  validarCampos,
-]);
-
-routerAuth.post("/", [
-  check("email", "El email es obligatorio").isEmail(),
-  check("password", "El password debe de ser de 6 caracteres").isLength({
-    min: 6,
-  }),
-  validarCampos,
-]);
-
-routerAuth.get("/renew", validarJWT);
-
 export { routerAuth };
